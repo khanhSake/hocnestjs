@@ -1,4 +1,3 @@
-import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

@@ -9,7 +9,8 @@ import { Product } from './entities/Product';
 import { LoginMiddleware } from './middleware/login/login.middleware';
 import { User1 } from './user/user1.entity';
 import { User2Module } from './modules/user2/user2.module';
-import { User2 } from './entities/user2';
+import { User2 } from './entities/User2s';
+import { AuthModule } from './modules/auth/auth.module';
 
 
 @Module({
@@ -22,7 +23,7 @@ import { User2 } from './entities/user2';
     database: "hocnestjs",
     entities:[User,Product, User1,User2],//Danh cac entities
     synchronize: true,// tu dong tao bang tu entities( chi sai trong giai doan development)
-}), ProductsModule, User2Module],
+}), ProductsModule, User2Module, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 }
