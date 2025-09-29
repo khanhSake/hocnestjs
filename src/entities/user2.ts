@@ -1,0 +1,23 @@
+import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity()
+export class User2{
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name:string;
+
+    @Column({unique: true})
+    email: string;  
+
+    @Column()
+    password:string;
+
+    @CreateDateColumn()
+    createAt:Date;
+
+    @CreateDateColumn()
+    updateAt:Date;
+}
