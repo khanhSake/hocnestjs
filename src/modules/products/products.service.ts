@@ -16,6 +16,7 @@ export class ProductsService {
         if(!proD){
             throw new HttpException('Ko tim thay san pham', HttpStatus.NOT_FOUND);
         }
+        return proD;
     }
 
     findAll(){

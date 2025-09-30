@@ -1,8 +1,9 @@
-import { ArgumentMetadata, BadRequestException, Body, Controller, Delete, Get, Inject, Param, Patch, PipeTransform, Post, Req, UsePipes } from '@nestjs/common';
+import { ArgumentMetadata, BadRequestException, Body, Controller, Delete, Get, Inject, Param, Patch, PipeTransform, Post, Req, UseGuards, UsePipes } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from '../../dto/create-product.dto';
 import { REQUEST } from '@nestjs/core';
 import { UpdateProductDto } from 'src/dto/update-product.dto';
+import { JwtAuthGuard } from 'src/guard/jwt-auth.guard';
 
 
 export class ValidationPipe implements PipeTransform{
@@ -22,6 +23,7 @@ export class ValidationPipe implements PipeTransform{
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id : number){
     return this.productsService.find(id);
