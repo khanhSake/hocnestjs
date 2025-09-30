@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { User2Service } from '../user2/user2.service';
 import { LocalAuthGuard } from 'src/guard/local-auth.guard';
@@ -30,6 +30,15 @@ export class AuthController {
   login(@Request() req:any){
     return this.authService.login(req.user);// luu vao access token o phan auth
   }
+
+  @Post('referesh-token')
+  refereshToken(@Body() {refereshToken}:{refereshToken:string}){
+    if(!refereshToken){
+      throw new BadRequestException('Referesh token is required.')
+    }
+    return this.authService.veryfiyRefershToken(refereshToken);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   profile(@Request() req:any){

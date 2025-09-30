@@ -38,5 +38,22 @@ export class User2Service {
         }
         return null;
     }
+     async saveRefereshToken (refereshtoken:string, idUser: number){// tao sao can id ? trong kho da co tokeen (--- hoi thua),
+        const user= await this.user2Repos.findOneBy({id:idUser});
+        const hashRefershToken= await bcrypt.hash(refereshtoken,10);
+        user!.referesh_token=hashRefershToken;// tam thoi de ! de dam bao no chay dc
+        return this.user2Repos.save(user!);
+     }
+     async verifyRefereshToken(refereshtoken:string, idUser: number){
+        const user= await this.user2Repos.findOneBy({id: idUser});
+        if(user){
+            const status= await bcrypt.compare(refereshtoken,user.referesh_token);
+            if(status){
+                return true;    
+            }
+        }
+        return false;
+
+    }
 
 }

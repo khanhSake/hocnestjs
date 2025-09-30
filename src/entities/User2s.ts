@@ -14,6 +14,11 @@ export class User2{
     @Column()
     password:string;
 
+    @Column({
+        nullable:true
+    })
+    referesh_token:string
+
     @CreateDateColumn()
     createAt:Date;
 

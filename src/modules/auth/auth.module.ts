@@ -13,7 +13,7 @@ import { JwtStrategy } from 'src/passport/jwt.strategy';
     User2Module,
     PassportModule,
     JwtModule.register({
-      secret:'asdasdasdadsa',
+      secret:'asdasdasdadsa',//chuoi nay de lam gi , sinh ra chuoi nay nhu nao
       signOptions:{expiresIn:'1h'}
     })
   ],
